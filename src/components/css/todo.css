@@ -1,0 +1,107 @@
+.todoContainer {
+    margin: 20px 0;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-family: cursive;
+}
+
+.todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+}
+
+.head {
+    display: block;
+}
+
+
+.done {
+    width: 35px;
+    height: 30px;
+    color: red;
+    text-align: center;
+    font-size: large;
+    margin: 20px;
+    border-radius: 50%;
+    border: 1px black solid;
+    cursor: pointer;
+    transition: color ease-out .2s, background-color ease-out .2s;
+}
+
+.doneActive {
+    background-color: green;
+    color: white;
+}
+
+.editTodoButton {
+    transition: opacity .5s ease-out !important;
+    opacity: 0;
+    height: 0;
+    display: flex;
+    align-items: center;
+}
+
+.editTodo {
+    height: 30px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.editTodo input {
+    height: 100%;
+    width: 250px;
+    border: none;
+    border-bottom: 2px blue solid;
+    margin-right: 20px;
+    transition: all ease .2s;
+}
+
+.editTodo input:focus {
+    outline: blue solid 2px;
+}
+
+.editTodo button {
+    height: 100%;
+    width: 100px;
+    background: white;
+    color: black;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    border: 1px black solid;
+    transition: color ease-out .2s, background ease-out .2s;
+}
+
+.editTodo button:hover {
+    background: green;
+    color: white;
+}
+
+.deleteIcon {
+    color: red;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.editIcon {
+    color: blue;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.todoContainer:hover > .editTodoButton {
+    opacity: 1 !important;
+}
+
+.taskText {
+    max-width: 250px;
+    word-wrap: break-word;
+}
+
+.overdue {
+    background: burlywood;
+}
