@@ -118,7 +118,7 @@
     text-decoration: none;
     position: relative;
     list-style: none;
-    background: lightsteelblue;
+    background: black;
     opacity: 0;
     width: 0;
     height: calc(100vh - 60px);
@@ -143,14 +143,16 @@
     text-align: start;
     padding: 10px 0 10px 10px;
     margin: 0;
+    color: white;
 }
 
 .link:hover {
-    background: lightgray;
+    background: #069CF8;
 }
 
 .active-link {
     background: white;
+    color: black;
 }
 
 .left-links {
