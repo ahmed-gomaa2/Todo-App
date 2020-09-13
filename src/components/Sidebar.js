@@ -82,7 +82,7 @@ class PersistentDrawerLeft extends React.Component {
         console.log(this.props)
     return (
         <div >
-            <div className='nav-bar' >
+            <div className='nav-bar'>
 
                 <div className="right">
 
@@ -90,7 +90,7 @@ class PersistentDrawerLeft extends React.Component {
 
                     <ui className="right-links">
                         <li className="home">
-                            <Link to='/' className="homeLink">Home</Link>
+                            <Link to='/' className="homeLink">Week</Link>
                         </li>
                     </ui>
                 </div>

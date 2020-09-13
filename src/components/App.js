@@ -3,7 +3,7 @@ import {BrowserRouter, Link, Route, NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {firestoreConnect} from "react-redux-firebase";
 import {compose} from "redux";
-import Landing from './Landing'
+import Week from './Week'
 import Today from './Today'
 import Tomorrow from './Tomorrow'
 import Sidebar from "./Sidebar";
@@ -27,17 +27,15 @@ class App extends Component {
                 <div className='container'>
                     <div className={`sidbar-items ${this.state.toggle ? 'sidbar-items-active' : ''}`}>
                         <ui className="items">
-                            <NavLink className='link' activeClassName='active-link' to='/today'>Today</NavLink>
-                            <NavLink className='link' activeClassName='active-link' to='/tomorrow'>Tomorrow</NavLink>
-                            <NavLink className='link' activeClassName='active-link' to='/week'>Week</NavLink>
+                            <NavLink exact={true} className='link' activeClassName='active-link' to='/today'>Today</NavLink>
+                            <NavLink exact={true} className='link' activeClassName='active-link' to='/tomorrow'>Tomorrow</NavLink>
+                            <NavLink exact={true} className='link' activeClassName='active-link' to='/'>Week</NavLink>
                         </ui>
                     </div>
-                    <Route exact path='/' component={Landing} />
+                    <Route exact path='/' component={Week} />
                     {this.props.uid ? [
-                        <div style={{width:'100%'}}>
-                            <Route exact path='/today' component={Today} />
+                            <Route exact path='/today' component={Today} />,
                             <Route exact path='/tomorrow' component={Tomorrow} />
-                        </div>
                     ]: ''}
                 </div>
 

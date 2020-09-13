@@ -64,7 +64,6 @@ class Tomorrow extends Component {
         const nextDay = new Date(day);
         nextDay.setDate(day.getDate() + 1);
         return (
-            <div>
                 <div className='today'>
                     <h2>Tomorrow <span className='dateString'>{nextDay.toDateString()}</span></h2>
                     {!this.state.adding ? <p onClick={(event => this.setState({adding: true}))} className='addingButton'><AddIcon /> Add Task</p> : <form className='addTodo' onSubmit={this.handleSubmit}>
@@ -76,7 +75,6 @@ class Tomorrow extends Component {
                     <div>
                         {this.renderTasks()}
                     </div>
-                </div>
             </div>
         );
     }
