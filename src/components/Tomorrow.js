@@ -19,7 +19,14 @@ class Tomorrow extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.addTask(this.state.task, 'tomorrow', new Date(),this.props.uid )
+        const task = {
+            task: this.state.task,
+            collection: 'tomorrow',
+            date: new Date(),
+            userID: this.props.uid,
+            overdueDate: new Date()
+        }
+        this.props.addTask(task)
         this.setState({task:''})
     }
 
@@ -44,8 +51,8 @@ class Tomorrow extends Component {
             this.props.tasks.map(task => {
                 const taskDate = task.overdueDate.toDate()
                 const taskDateFormated = taskDate.getFullYear() + '/' + (taskDate.getMonth() + 1) + '/' + taskDate.getDate();
-                if(todayDate > taskDateFormated) {
-                    this.props.moveTomorrowTasks(task)
+                if(true) {
+                    this.props.moveTomorrowTasks(task, 'today', 'tomorrow')
                 }
             })
         }
@@ -82,7 +89,6 @@ class Tomorrow extends Component {
 
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         tasks: state.firestore.ordered.tomorrow,
         uid: state.firebase.auth.uid

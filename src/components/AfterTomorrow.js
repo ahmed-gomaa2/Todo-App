@@ -7,6 +7,8 @@ import {connect} from "react-redux";
 import * as actions from "../actions";
 import {firestoreConnect} from "react-redux-firebase";
 
+
+
 class AfterTomorrow extends Component {
     state= {
         task: '',
@@ -18,8 +20,18 @@ class AfterTomorrow extends Component {
     }
 
     handleSubmit = (e) => {
+        const day = new Date();
+        const nextDay = new Date(day);
+        nextDay.setDate(day.getDate() + 2);
+        const task = {
+            task: this.state.task,
+            collection:'AfterTomorrow',
+            date:new Date(),
+            userID: this.props.uid,
+            overdueDate: new Date()
+        }
         e.preventDefault()
-        this.props.addTask(this.state.task, 'AfterTomorrow', new Date(),this.props.uid )
+        this.props.addTask(task)
         this.setState({task:''})
     }
 
@@ -38,14 +50,17 @@ class AfterTomorrow extends Component {
     }
 
     checkPassing = () => {
+
         const today = new Date()
         const todayDate = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
+
         if(this.props.tasks) {
             this.props.tasks.map(task => {
-                const taskDate = task.overdueDate.toDate()
+                const taskDate = new Date(task.overdueDate.toDate())
+                taskDate.setDate(taskDate.getDate() - 1)
                 const taskDateFormated = taskDate.getFullYear() + '/' + (taskDate.getMonth() + 1) + '/' + taskDate.getDate();
-                if(todayDate > taskDateFormated) {
-                    this.props.moveTomorrowTasks(task)
+                if(todayDate === taskDateFormated) {
+                    this.props.moveTomorrowTasks(task, 'tomorrow', 'AfterTomorrow')
                 }
             })
         }
@@ -82,7 +97,6 @@ class AfterTomorrow extends Component {
 
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         tasks: state.firestore.ordered.AfterTomorrow,
         uid: state.firebase.auth.uid

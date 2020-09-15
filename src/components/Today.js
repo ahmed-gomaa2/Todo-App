@@ -20,7 +20,14 @@ class Today extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.addTask(this.state.task, 'today', new Date(),this.props.uid )
+        const task = {
+            task: this.state.task,
+            collection: 'today',
+            date: new Date(),
+            userID: this.props.uid,
+            overdueDate: new Date()
+        }
+        this.props.addTask(task)
         this.setState({task:''})
     }
 
@@ -29,9 +36,7 @@ class Today extends Component {
         const todayDate = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
         if(this.props.tasks) {
             this.props.tasks.map(task => {
-                console.log(task.overdueDate)
                 const taskDate = new Date(task.overdueDate.toDate())
-                console.log(taskDate)
                 const taskDateFormated = taskDate.getFullYear() + '/' + (taskDate.getMonth() + 1) + '/' + taskDate.getDate();
                 if(todayDate > taskDateFormated) {
                     this.props.overdueTask(task, 'today')
