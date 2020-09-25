@@ -6,6 +6,7 @@ import AddIcon from '@material-ui/icons/Add';
 import * as actions from '../actions'
 import Todo from "./Todo";
 import './css/today.css'
+import FlipMove from 'react-flip-move'
 
 class Today extends Component {
 

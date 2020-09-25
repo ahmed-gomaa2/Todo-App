@@ -9,6 +9,7 @@ import Tomorrow from './Tomorrow'
 import Sidebar from "./Sidebar";
 import './css/sidebar.css'
 import * as actions from "../actions";
+import './css/App.css'
 
 
 class App extends Component {

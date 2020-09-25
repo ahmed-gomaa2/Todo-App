@@ -1,10 +1,11 @@
 import {getFirebase} from "react-redux-firebase";
 
 export const addTask = (task) => (dispatch, getState, {getFirebase})=> {
-    const firestore = getFirebase().firestore()
+    const firebase = getFirebase()
+    const firestore = firebase.firestore()
     firestore.collection(task.collection).add({
         task: task.task,
-        date:task.date,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         overdue: false,
         userID: task.userID,
         overdueDate: task.overdueDate
@@ -41,8 +42,10 @@ export const editTask = (task, todo,  collection) => (dispatch, getState, {getFi
     const firestore = getFirebase().firestore()
     firestore.collection(collection).doc(todo.id).set({
         task: task,
-        date: todo.date,
+        timestamp: todo.timestamp,
         overdue: todo.overdue,
+        userID: todo.userID,
+        overdueDate: todo.overdueDate
     })
 }
 
@@ -70,7 +73,7 @@ export const moveTomorrowTasks = (task, collection1, collection2) => (dispatch, 
     console.log(task)
     firestore.collection(collection1).add({
         task: task.task,
-        date: task.date,
+        timestamp:task.timestamp,
         overdue: false,
         overdueDate: nextDay,
         userID: task.userID
@@ -87,7 +90,7 @@ export const moveAfterTomorrowTasks = (task) => (dispatch, getState, {getFirebas
     const firestore = getFirebase().firestore()
     firestore.collection('tomorrow').add({
         task: task.task,
-        date: task.date,
+        timestamp:task.timestamp,
         overdue:false,
         overdueDate:nextDay,
         userID: task.userID

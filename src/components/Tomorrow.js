@@ -51,7 +51,7 @@ class Tomorrow extends Component {
             this.props.tasks.map(task => {
                 const taskDate = task.overdueDate.toDate()
                 const taskDateFormated = taskDate.getFullYear() + '/' + (taskDate.getMonth() + 1) + '/' + taskDate.getDate();
-                if(true) {
+                if(todayDate > taskDateFormated) {
                     this.props.moveTomorrowTasks(task, 'today', 'tomorrow')
                 }
             })
